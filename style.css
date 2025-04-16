@@ -1,0 +1,423 @@
+/* Reset Básico e Configurações Globais */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* --- Variáveis de Cor --- */
+:root {
+    --black: #000000;
+    --near-black: #101010;
+    --dark-grey: #1a1a1a;
+    --medium-grey: #555555;
+    --light-grey: #bbbbbb;
+    --lighter-grey: #dddddd;
+    --white: #ffffff;
+    --rgb-speed: 6s;
+    --rgb-saturation: 100%;
+    --rgb-lightness: 65%;
+}
+
+/* --- Animações --- */
+@keyframes rgb-border-glow {
+  0%, 100% { border-color: hsl(0, var(--rgb-saturation), var(--rgb-lightness)); box-shadow: 0 0 8px hsl(0, var(--rgb-saturation), var(--rgb-lightness)), inset 0 0 5px hsl(0, var(--rgb-saturation), var(--rgb-lightness)); }
+  16%  { border-color: hsl(60, var(--rgb-saturation), var(--rgb-lightness)); box-shadow: 0 0 10px hsl(60, var(--rgb-saturation), var(--rgb-lightness)), inset 0 0 6px hsl(60, var(--rgb-saturation), var(--rgb-lightness)); }
+  33%  { border-color: hsl(120, var(--rgb-saturation), var(--rgb-lightness)); box-shadow: 0 0 12px hsl(120, var(--rgb-saturation), var(--rgb-lightness)), inset 0 0 7px hsl(120, var(--rgb-saturation), var(--rgb-lightness)); }
+  50%  { border-color: hsl(180, var(--rgb-saturation), var(--rgb-lightness)); box-shadow: 0 0 14px hsl(180, var(--rgb-saturation), var(--rgb-lightness)), inset 0 0 8px hsl(180, var(--rgb-saturation), var(--rgb-lightness)); }
+  66%  { border-color: hsl(240, var(--rgb-saturation), var(--rgb-lightness)); box-shadow: 0 0 12px hsl(240, var(--rgb-saturation), var(--rgb-lightness)), inset 0 0 7px hsl(240, var(--rgb-saturation), var(--rgb-lightness)); }
+  83%  { border-color: hsl(300, var(--rgb-saturation), var(--rgb-lightness)); box-shadow: 0 0 10px hsl(300, var(--rgb-saturation), var(--rgb-lightness)), inset 0 0 6px hsl(300, var(--rgb-saturation), var(--rgb-lightness)); }
+}
+
+@keyframes rgb-icon-color {
+   0%, 100% { color: hsl(0, var(--rgb-saturation), 70%); filter: drop-shadow(0 0 4px hsl(0, var(--rgb-saturation), 70%)); }
+  16% { color: hsl(60, var(--rgb-saturation), 70%); filter: drop-shadow(0 0 5px hsl(60, var(--rgb-saturation), 70%)); }
+  33% { color: hsl(120, var(--rgb-saturation), 70%); filter: drop-shadow(0 0 6px hsl(120, var(--rgb-saturation), 70%)); }
+  50% { color: hsl(180, var(--rgb-saturation), 70%); filter: drop-shadow(0 0 7px hsl(180, var(--rgb-saturation), 70%)); }
+  66% { color: hsl(240, var(--rgb-saturation), 70%); filter: drop-shadow(0 0 6px hsl(240, var(--rgb-saturation), 70%)); }
+  83% { color: hsl(300, var(--rgb-saturation), 70%); filter: drop-shadow(0 0 5px hsl(300, var(--rgb-saturation), 70%)); }
+}
+
+@keyframes rgb-text-shadow-subtle {
+  0%, 100% { text-shadow: 1px 1px 2px hsl(0, var(--rgb-saturation), var(--rgb-lightness)), -1px -1px 2px hsl(180, var(--rgb-saturation), var(--rgb-lightness)), 0 2px 4px rgba(0,0,0,0.5); }
+  25%  { text-shadow: 1px 1px 3px hsl(90, var(--rgb-saturation), var(--rgb-lightness)), -1px -1px 3px hsl(270, var(--rgb-saturation), var(--rgb-lightness)), 0 2px 4px rgba(0,0,0,0.5); }
+  50%  { text-shadow: 1px 1px 4px hsl(180, var(--rgb-saturation), var(--rgb-lightness)), -1px -1px 4px hsl(0, var(--rgb-saturation), var(--rgb-lightness)), 0 2px 4px rgba(0,0,0,0.5); }
+  75%  { text-shadow: 1px 1px 3px hsl(270, var(--rgb-saturation), var(--rgb-lightness)), -1px -1px 3px hsl(90, var(--rgb-saturation), var(--rgb-lightness)), 0 2px 4px rgba(0,0,0,0.5); }
+}
+
+@keyframes counter-flash {
+  0%, 100% { transform: scale(1); color: var(--white); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7); }
+  50% { transform: scale(1.12); color: var(--white); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); }
+}
+
+@keyframes subtleEntryDark {
+    from { opacity: 0; transform: scale(0.97) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fullscreen-rgb-shadow {
+   0%   { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 0 8px hsl(0, 100%, 60%); }
+  25%  { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 0 10px hsl(90, 100%, 60%); }
+  50%  { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 0 12px hsl(180, 100%, 60%); }
+  75%  { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 0 10px hsl(270, 100%, 60%); }
+  100% { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6), 0 0 8px hsl(360, 100%, 60%); }
+}
+
+@keyframes rgb-border-glow-hover {
+  0%   { border-color: hsl(0, 100%, 65%); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 8px hsl(0, 100%, 65%); }
+  25%  { border-color: hsl(90, 100%, 65%); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 10px hsl(90, 100%, 65%); }
+  50%  { border-color: hsl(180, 100%, 65%); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 12px hsl(180, 100%, 65%); }
+  75%  { border-color: hsl(270, 100%, 65%); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 10px hsl(270, 100%, 65%); }
+  100% { border-color: hsl(360, 100%, 65%); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 8px hsl(360, 100%, 65%); }
+}
+
+/* --- Estilos Base --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--near-black);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#infiniteFlowCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.dark-overlay {
+    display: none;
+}
+
+/* --- Container Principal --- */
+.container {
+    text-align: center;
+    padding: 25px 35px 35px 35px;
+    background-color: rgba(26, 26, 26, 0.85);
+    border-radius: 12px;
+    border: 1px solid var(--medium-grey);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    max-width: 580px;
+    width: 90%;
+    position: relative;
+    z-index: 100;
+    backdrop-filter: blur(5px) brightness(1.1);
+    -webkit-backdrop-filter: blur(5px) brightness(1.1);
+    opacity: 0;
+    animation: subtleEntryDark 1.2s ease-out forwards;
+}
+
+/* --- Seção do Perfil --- */
+.profile-section {
+    margin-bottom: 20px;
+}
+
+.profile-picture-container {
+    position: relative;
+    width: 130px; height: 130px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.profile-picture-container.rgb-border-anim::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: rgb-border-glow var(--rgb-speed) linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.profile-picture {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--dark-grey);
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    display: block;
+    background-color: var(--medium-grey);
+}
+
+/* --- Contador --- */
+.view-counter {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.counter-icon {
+    font-size: 1.4em;
+    animation: rgb-icon-color var(--rgb-speed) linear infinite;
+}
+
+.counter-number {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    min-width: 55px;
+    text-align: left;
+    position: relative;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.counter-number.counter-updated {
+    /* Estilo opcional ao atualizar */
+}
+
+/* --- Nome do Perfil --- */
+.profile-name {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 3.8em;
+    line-height: 1;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    letter-spacing: 0px;
+    position: relative;
+    color: var(--white);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
+    animation: rgb-text-shadow-subtle var(--rgb-speed) linear infinite;
+}
+
+/* --- Botões Sociais --- */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 0;
+    width: 85%;
+    max-width: 330px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: var(--lighter-grey);
+    font-size: 1.05em;
+    font-weight: 600;
+    border: 1px solid var(--medium-grey);
+    background-color: var(--near-black);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 0 4px rgba(255, 255, 255, 0.02);
+    z-index: 1;
+}
+
+.social-icon {
+    font-size: 1.3em;
+    transition: all 0.3s ease-out;
+    z-index: 3;
+    animation: rgb-icon-color var(--rgb-speed) linear infinite;
+}
+
+.social-button span {
+    z-index: 3;
+    position: relative;
+}
+
+.social-button:hover {
+    color: var(--white);
+    transform: translateY(-2px) scale(1.01);
+    animation: rgb-border-glow-hover var(--rgb-speed) linear infinite;
+}
+
+/* --- Seção GIF (MODIFICADO) --- */
+.gif-section { /* RENOMEADO de .video-section */
+    margin-top: 15px;
+    padding-top: 20px;
+    border-top: 1px solid var(--medium-grey);
+}
+
+.gif-container { /* RENOMEADO de .video-player-container */
+    max-width: 520px;
+    width: 90%;
+    margin: 15px auto 0 auto;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    padding: 2px; /* Espaço para borda animada */
+    background-color: var(--black);
+    border: none;
+    position: relative;
+}
+
+/* Aplica a animação de borda RGB ao container do GIF */
+.gif-container.rgb-border-anim::before { /* RENOMEADO de .video-player-container... */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 7px;
+    border: 2px solid transparent;
+    animation: rgb-border-glow var(--rgb-speed) linear infinite;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Estilo para o elemento IMG (GIF) - MODIFICADO */
+.background-image-player {
+    display: block; /* ALTERADO de 'none' para 'block' para exibir o GIF */
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Mantém a proporção, ajuste se necessário para seu GIF */
+    object-fit: cover;
+    border-radius: 6px;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    filter: none;
+    background-color: var(--near-black); /* Cor de fundo enquanto carrega */
+}
+
+/* REMOVIDO Bloco de estilo para .background-video-player pois o vídeo foi removido */
+/* REMOVIDO Bloco de regras para .show-image pois o GIF/imagem agora é sempre exibido */
+
+/* Bloqueador de interação sobre o GIF */
+.gif-interaction-blocker { /* RENOMEADO de .video-interaction-blocker */
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 5;
+    cursor: default;
+    background: none;
+}
+
+/* --- Botão Tela Cheia --- */
+.fullscreen-button {
+    position: fixed;
+    top: 15px; right: 15px;
+    z-index: 1001;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--lighter-grey);
+    background-color: rgba(26, 26, 26, 0.8);
+    border: 1px solid var(--medium-grey);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.fullscreen-button i {
+    font-size: 1em;
+    color: var(--light-grey);
+    transition: color 0.3s ease-out;
+}
+
+.fullscreen-button:hover {
+    background-color: rgba(37, 37, 37, 0.9);
+    color: var(--white);
+    transform: scale(1.05);
+    border-color: var(--white);
+    animation: fullscreen-rgb-shadow var(--rgb-speed) linear infinite;
+}
+
+.fullscreen-button:hover i {
+    color: var(--white);
+}
+
+.fullscreen-button:active {
+    transform: scale(1);
+}
+
+/* --- Pergunta Adicional Discreta --- */
+.happiness-question {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85em;
+    color: var(--light-grey);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    opacity: 0.85;
+    text-align: center;
+    line-height: 1.4;
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 640px) {
+    body { padding: 10px 0; }
+    .container {
+        width: 95%;
+        padding: 20px 15px 30px 15px;
+    }
+    .profile-picture-container {
+        width: 110px; height: 110px;
+        margin-bottom: 15px; padding: 2px;
+    }
+    .profile-picture-container.rgb-border-anim::before {
+        border-width: 2px;
+    }
+    .profile-name {
+        font-size: 2.8em;
+        margin-bottom: 10px;
+    }
+    .counter-icon { font-size: 1.3em; }
+    .counter-number { font-size: 1.4em; }
+
+    .social-links {
+        gap: 12px;
+        margin-top: 20px; margin-bottom: 15px;
+    }
+    .social-button {
+        padding: 10px 0;
+        font-size: 1em;
+    }
+    .social-icon {
+        font-size: 1.2em;
+    }
+    .gif-section { /* RENOMEADO de .video-section */
+        margin-top: 15px; padding-top: 15px;
+    }
+    .gif-container { /* RENOMEADO de .video-player-container */
+        margin-top: 10px; border-radius: 7px; padding: 2px;
+    }
+    .gif-container.rgb-border-anim::before { /* RENOMEADO */
+        border-radius: 6px;
+    }
+    .background-image-player { /* MODIFICADO (era .background-video-player, .background-image-player) */
+        border-radius: 5px;
+    }
+    .fullscreen-button {
+        padding: 7px 12px;
+        font-size: 0.8em;
+        top: 10px; right: 10px;
+    }
+    .happiness-question {
+        font-size: 0.8em;
+        margin-top: 20px;
+    }
+}

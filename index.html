@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gu.ttr - Chroma Flow (Layout Final)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="infiniteFlowCanvas"></canvas>
+    <div class="dark-overlay"></div>
+    <button id="fullscreenBtn" class="fullscreen-button">
+        <i class="fas fa-expand"></i> <span>Tela Cheia</span>
+    </button>
+
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-picture-container rgb-border-anim">
+                <img class="profile-picture" id="profilePic" src="imagens/placeholder-profile.png" alt="Foto de Perfil Gu.ttr">
+            </div>
+
+            <div class="view-counter">
+                 <i class="fas fa-eye counter-icon rgb-icon-anim"></i>
+                <span id="viewCountDisplay" class="counter-number">18.257.346</span>
+            </div>
+
+            <h1 class="profile-name">Gu.ttr</h1>
+        </div>
+
+        <div class="social-links">
+             <a href="https://wa.me/5586981512258" target="_blank" class="social-button whatsapp">
+                <i class="fab fa-whatsapp social-icon rgb-icon-anim"></i><span>WhatsApp</span>
+            </a>
+            <a href="https://instagram.com/gu.ttr" target="_blank" class="social-button instagram">
+                <i class="fab fa-instagram social-icon rgb-icon-anim"></i><span>Instagram</span>
+            </a>
+            <a href="https://tiktok.com/@gu.ttr" target="_blank" class="social-button tiktok">
+                <i class="fab fa-tiktok social-icon rgb-icon-anim"></i><span>TikTok</span>
+            </a>
+        </div>
+
+        <div class="gif-section">
+             <div class="gif-container rgb-border-anim" id="media-container">
+                <img id="bgImage"
+                     src="imagens/meu-fundo.gif"  alt="GIF animado de fundo"
+                     class="background-image-player">
+
+                <div class="gif-interaction-blocker"></div>
+            </div>
+        </div>
+        <p class="happiness-question">Foi quando Jairo finalmente entendeu...
+O universo não se importa comigo... Ninguém se importa se eu vivo, ou morro... </p>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/3.0.0/simplex-noise.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
