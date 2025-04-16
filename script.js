@@ -5,15 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('infiniteFlowCanvas');
     const container = document.querySelector('.container');
     const fullscreenButton = document.getElementById('fullscreenBtn');
-    const viewCountElement = document.getElementById('viewCountDisplay');
+    // const viewCountElement = document.getElementById('viewCountDisplay'); // REMOVIDO
     const gifImageElement = document.getElementById('bgImage'); // Seleciona o elemento da imagem/GIF
 
     // Verifica se os elementos essenciais foram encontrados
     if (!canvas) console.error("ERRO CRÍTICO: Canvas 'infiniteFlowCanvas' não encontrado!");
     if (!container) console.error("ERRO CRÍTICO: Container '.container' não encontrado!");
     if (!fullscreenButton) console.warn("AVISO: Botão 'fullscreenBtn' não encontrado.");
-    if (!viewCountElement) console.warn("AVISO: Contador 'viewCountDisplay' não encontrado!");
-    // REMOVIDA verificação do videoElement
+    // Verificação do contador removida
     if (!gifImageElement) console.warn("AVISO: Elemento de Imagem/GIF 'bgImage' não encontrado!"); // Adicionada verificação da imagem
 
     // --- Configuração do Canvas de Fundo ---
@@ -199,41 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Contador de Visualizações ---
-    let currentViewCount = 18257346;
-    let intervalIdCounter;
-
-    if (viewCountElement) {
-        function updateCounter() {
-            try {
-                const randomIncrement = Math.floor(Math.random() * (500000 - 10 + 1)) + 10;
-                currentViewCount += randomIncrement;
-                viewCountElement.textContent = currentViewCount.toLocaleString('pt-BR');
-                viewCountElement.classList.add('counter-updated');
-                setTimeout(() => {
-                    if (viewCountElement) {
-                        viewCountElement.classList.remove('counter-updated');
-                    }
-                }, 500);
-            } catch (error) {
-                console.error("ERRO ao atualizar o contador:", error);
-                if (intervalIdCounter) clearInterval(intervalIdCounter);
-            }
-        }
-
-        function startCounter() {
-            try {
-                console.log("Iniciando contador com valor:", currentViewCount);
-                viewCountElement.textContent = currentViewCount.toLocaleString('pt-BR');
-                if (intervalIdCounter) clearInterval(intervalIdCounter);
-                intervalIdCounter = setInterval(updateCounter, 3000);
-                console.log("Contador agendado para atualizar a cada 3 segundos.");
-            } catch (e) {
-                console.error("Erro ao iniciar o contador:", e);
-            }
-        }
-        startCounter();
-    }
+    // --- Lógica do Contador Removida ---
 
     // --- Lógica do Botão Tela Cheia ---
     if (fullscreenButton) {
@@ -301,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- REMOVIDO Bloco de Listeners de Evento do Vídeo ---
-    // Não há mais elemento de vídeo para adicionar listeners.
 
 
     // --- Função de Inicialização/Redimensionamento Geral ---
@@ -309,6 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             console.log("Inicializando/Redimensionando...");
             width = window.innerWidth;
+            // Ajuste a altura para considerar a rolagem, se necessário,
+            // mas para o canvas fixo, a altura da janela ainda é relevante.
             height = window.innerHeight;
 
             if (canvas && ctx) {
@@ -355,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 initialize();
             } else {
                 console.error(`Falha na inicialização tardia: Noise=${!!noiseGen}, Ctx=${!!ctx}`);
-                initialize();
+                initialize(); // Tenta inicializar mesmo sem tudo, pode pintar o fundo estático
             }
         }, 500);
     }
